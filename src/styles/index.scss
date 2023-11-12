@@ -1,0 +1,146 @@
+@import "./reusable/header.scss";
+@import "./reusable/sidebar.scss";
+
+
+@import "./pages/dashboard.scss";
+
+
+
+
+
+* {
+  scroll-behavior: smooth;
+
+  body::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: rgba(66, 63, 63, 0.5);
+    border-radius: 8px;
+
+    &:hover {
+      background: rgba(36, 36, 36, 0.75);
+    }
+  }
+}
+
+*::selection {
+  background-color: transparent;
+}
+
+/* h1 */
+h1 {
+  font-family: "Montserrat", sans-serif;
+  @media (min-width: 200px) {
+    font-size: 32px;
+    color: #1C232E;
+  }
+
+  @media (min-width: 450px) {
+    font-size: 36px;
+    color: #1C232E;
+  }
+
+  @media (min-width: 991px) {
+    font-size: 50px;
+    color: #1C232E;
+  }
+
+  @media (min-width: 1600px) {
+    font-size: 55px;
+    color: #1C232E;
+  }
+}
+
+/* h2 */
+h2 {
+  font-family: "Montserrat", sans-serif;
+  color: #1C232E;
+
+  @media (min-width: 200px) {
+    font-size: x-large;
+    color: #1C232E;
+  }
+
+  @media (min-width: 768px) {
+    font-size: xx-large;
+    color: #1C232E;
+  }
+
+  @media (min-width: 1280px) {
+    font-size: 45px;
+    color: #1C232E;
+  }
+}
+
+/* h3 */
+h3 {
+  font-family: "Montserrat", sans-serif;
+  color: #1C232E;
+
+  @media (min-width: 1024px) {
+    font-size: 20px;
+    color: #1C232E;
+  }
+
+  @media (min-width: 1281px) {
+    font-size: 24px;
+    color: #1C232E;
+  }
+}
+
+p,
+button,
+span,
+li,
+a,
+label,
+input,
+div {
+  font-family: "Montserrat", sans-serif;
+  color: #1C232E;
+  @media (min-width: 200px) {
+    font-size: 16px;
+    color: #1C232E;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    color: #1C232E;
+  }
+}
+
+.row{
+ --bs-gutter-x: 0;
+}
+
+.bg-verde-claro {
+    background-color: #53ac59 !important;
+}
+
+.bg-verde-medio {
+    background-color: #3b8952 !important;
+}
+
+.bg-verde-bosque {
+    background-color: #0f683b !important;
+}
+
+.bg-verde-oscuro {
+    background-color: #03484c !important;
+}
+
+.bg-gris {
+  background-color: #363E42 !important;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.p-0{
+  padding: 0px !important;
+}
+
+

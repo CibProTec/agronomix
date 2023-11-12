@@ -1,0 +1,131 @@
+#Sidebar{
+    background-color: aqua;
+    min-height: 95vh;
+    height: 100%;
+}
+
+#logo-container{
+    height: 9vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo-sidebar{
+    background-image: url('../../assets/logo/Agronomix.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 45px;
+    width: 130px;
+}
+
+#user-info-container{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-item{
+    display: flex;
+    color: white !important;
+    font-size: 0.9rem;
+    padding: 15px 0 15px 0px;
+}
+
+.home-icon{
+    margin: 0px 10px 0px 20px;
+    height: 20px;
+    width: 20px;
+    background-image: url('../../assets/icons/house-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.products-icon{
+    margin: 0px 10px 0px 20px;
+    height: 20px;
+    width: 20px;
+    background-image: url('../../assets/icons/box-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.lots-icon{
+    margin: 0px 10px 0px 20px;
+    height: 20px;
+    width: 20px;
+    background-image: url('../../assets/icons/wheat-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.inventory-chart-icon{
+    margin: 0px 10px 0px 20px;
+    height: 20px;
+    width: 20px;
+    background-image: url('../../assets/icons/chart-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#accordion-sidebar{
+    padding: 15px 0 15px 0px;
+}
+
+#accordion-sidebar button{
+    background-color: #03484c;
+    color: white !important;
+    padding: 0px;
+    margin: 0px;
+    font-size: 0.9rem;
+}
+
+#accordion-sidebar button.accordion-button::after{
+    color: white !important;
+    background-image: url('../../assets/icons/light-arrow.png');
+    background-size: cover;
+    height: 10px;
+    width: 15px;
+    margin-left: 10px;
+}
+
+#accordion-body-sidebar{
+    padding: 0px 0px 0px 15px;
+}
+
+.config-icon{
+    margin: 0px 10px 0px 20px;
+    height: 20px;
+    width: 20px;
+    background-image: url('../../assets/icons/gear-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.weight-icon{
+    margin: 0px 10px 0px 20px;
+    height: 20px;
+    width: 20px;
+    background-image: url('../../assets/icons/weight-scale-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.coins-icon{
+    margin: 0px 10px 0px 20px;
+    height: 20px;
+    width: 20px;
+    background-image: url('../../assets/icons/coins-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.user-icon{
+    margin: 0px 10px 0px 20px;
+    height: 20px;
+    width: 20px;
+    background-image: url('../../assets/icons/user-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

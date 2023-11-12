@@ -1,0 +1,29 @@
+
+#Header{
+    height: 9vh;
+}
+
+#bars-container-header{
+    height: 100%;
+    width: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bars-light-icon{
+    background-image: url('../../assets/icons/bars-light.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 20px;
+    width: 40px;
+}
+
+#user-welcome{
+    font-weight: lighter;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.3em;
+    color: white;
+}
+
