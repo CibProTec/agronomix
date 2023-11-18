@@ -1,0 +1,71 @@
+{
+    "Inventario": [
+      {
+        "id": 1,
+        "imagen": "",
+        "nombre": "Papa",
+        "categoria": "Vegetales",
+        "cantidad": 20,
+        "lote": "Norte",
+        "fReg": "22/10/23",
+        "fExp": "22/12/23",
+        "created": "Pedro Sanchez"
+      },
+      {
+        "id": 2,
+        "imagen": "",
+        "nombre": "Manzana",
+        "categoria": "Frutas",
+        "cantidad": 15,
+        "lote": "Sur",
+        "fReg": "22/11/23",
+        "fExp": "22/12/23",
+        "created": "Ana Rodríguez"
+      },
+      {
+        "id": 3,
+        "imagen": "",
+        "nombre": "Zanahoria",
+        "categoria": "Vegetales",
+        "cantidad": 25,
+        "lote": "Este",
+        "fReg": "22/10/23",
+        "fExp": "22/11/23",
+        "created": "Juan Pérez"
+      },
+      {
+        "id": 4,
+        "imagen": "",
+        "nombre": "Uva",
+        "categoria": "Frutas",
+        "cantidad": 30,
+        "lote": "Oeste",
+        "fReg": "22/09/23",
+        "fExp": "22/10/23",
+        "created": "María García"
+      },
+      {
+        "id": 5,
+        "imagen": "",
+        "nombre": "Tomate",
+        "categoria": "Vegetales",
+        "cantidad": 18,
+        "lote": "Centro",
+        "fReg": "22/08/23",
+        "fExp": "22/09/23",
+        "created": "Luis Martínez"
+      }
+    ], 
+    "Usuarios":[
+
+    ],
+    "Producto":[
+
+    ],
+    "Lotes": [
+
+    ],
+    "UnidadM": [
+
+    ]
+  }

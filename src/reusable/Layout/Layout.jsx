@@ -16,8 +16,8 @@ export const Layout = ({children}) => {
                     <Col xs={12} className="p-0">
                         <Header/>
                     </Col>
-                    <Col xs={12} className="p-0">
-                        <main>{children}</main>
+                    <Col xs={12} className="p-0 bg-light-grey main-content">
+                        <main className="main-content">{children}</main>
                     </Col>
                 </Row>
             </Col>
