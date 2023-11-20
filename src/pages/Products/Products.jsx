@@ -20,7 +20,7 @@ export const Products = () => {
 
     const [producto, setProducto] = useState([]);
     const [imagen, setImagen] = useState(0);
-    const [nombre, setNombre] = useState(0);
+    const [nombre, setNombre] = useState("");
     const [idProducto, setIdProducto] = useState(0);
     const [idLoteProducto, setIdLoteProducto] = useState(0);
     const [idCategoriaProducto, setIdCategoriaProducto] = useState(0);
@@ -32,7 +32,7 @@ export const Products = () => {
             setProducto(response.data);
           })
           .catch((error) => {
-            console.error("Error fetching categories:", error);
+            console.error("Error fetching products:", error);
           });
       }, []);
     
@@ -69,11 +69,11 @@ export const Products = () => {
                 setProducto(response.data);
               })
               .catch((error) => {
-                console.error("Error fetching categories:", error);
+                console.error("Error fetching products:", error);
               });
           })
           .catch((error) => {
-            console.error("Error creating category:", error);
+            console.error("Error creating products:", error);
           });
     
         // Cierra el modal después de agregar la categoría
@@ -84,7 +84,7 @@ export const Products = () => {
     <Container>
         <h4 className='mt-3 ms-1'>Productos</h4>
         <div className='d-flex justify-content-end'>
-            <Button className='bg-verde-bosque px-5 float-right me-2 mb-5' onClick={handleCrearProducto}>Crear Producto</Button>
+            <Button className='bg-verde-bosque px-5 float-right me-2 mb-5' onClick={toggleModal}>Crear Producto</Button>
         </div>
         <Form>
             <Row>

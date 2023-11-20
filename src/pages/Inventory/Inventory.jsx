@@ -91,7 +91,7 @@ export const Inventory = () => {
     <Container>
         <h4 className='mt-3 ms-1'>Inventario</h4>
         <div className='d-flex justify-content-end'>
-            <Button className='bg-verde-bosque px-5 float-right me-2 mb-5' onClick={handleCrearInventario}>Crear Inventario</Button>
+            <Button className='bg-verde-bosque px-5 float-right me-2 mb-5' onClick={toggleModal}>Crear Inventario</Button>
         </div>
         <Form>
             <Row>

@@ -1,13 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Table, Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
+import { Container,
+    Table,
+    Button,
+    Form,
+    FormGroup,
+    Input,
+    Modal,
+    Col,
+    Row,
+    ModalHeader,
+    ModalBody,
+    ModalFooter } from 'reactstrap';
 import deleteIcon from "../../assets/icons/delete-icon.png"
 import editIcon from "../../assets/icons/edit-icon.png"
 
-import { obtenerUsuarios } from "../../apiService/apiService";
+import { obtenerUsuarios, crearUsuarios } from "../../apiService/apiService";
 
 export const Users = () => {
 
     const [usuario, setUsuario] = useState([]);
+    const [idUsuario, setIdUsuario] = useState(0);
+    const [imagen, setImagen] = useState("");
+    const [nombre, setNombre] = useState("");
+    const [email, setEmail] = useState("");
+    const [contrasenia, setContrasenia] = useState(0);
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
       obtenerUsuarios()
@@ -19,12 +36,55 @@ export const Users = () => {
           });
       }, []);
     
+      const toggleModal = () => {
+        setModal(!modal);
+        // Calcular automáticamente el próximo ID cuando se abre el modal para agregar categoría
+        const proximoId =
+          usuario.length > 0
+            ? usuario[usuario.length - 1].idUsuario + 1
+            : 1;
+        setIdUsuario(proximoId);
+        setImagen("");
+        setNombre("");
+        setEmail("");
+        setContrasenia("");
+      };
+
+      const handleCrearProducto = () => {
+        const nuevoUsuario = {
+            idUsuario : idUsuario,
+          imagen: imagen,
+          nombre: nombre,
+          email: email,
+          contrasenia: contrasenia,
+        };
+    
+        // Lógica para agregar una nueva categoría
+        crearUsuarios(nuevoUsuario)
+          .then((response) => {
+            console.log(response.data);
+            // Actualizar la lista de categorías después de agregar una nueva categoría
+            obtenerUsuarios()
+              .then((response) => {
+                setUsuario(response.data);
+              })
+              .catch((error) => {
+                console.error("Error fetching Users:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error creating product:", error);
+          });
+    
+        // Cierra el modal después de agregar la categoría
+        toggleModal();
+      };
 
   return (
     <Container>
         <h4 className='mt-3 ms-1'>Usuarios</h4>
         <div className='d-flex justify-content-end'>
-            <Button className='bg-verde-bosque px-5 float-right me-2 mb-5'>Crear Producto</Button>
+            <Button className='bg-verde-bosque px-5 float-right me-2 mb-5' onClick={toggleModal}>Crear Usuario</Button>
         </div>
         <Form>
             <Row>
@@ -96,6 +156,67 @@ export const Users = () => {
                 )}
         </tbody>
         </Table>
+
+           {/* Modal para agregar Producto */}
+      <Modal isOpen={modal} toggle={toggleModal}>
+        <ModalHeader toggle={toggleModal}>Agregar Inventario</ModalHeader>
+        <ModalBody>
+          {/* Formulario para agregar Producto */}
+          <FormGroup>
+            <label htmlFor="idUsuario">ID:</label>
+            <Input
+              type="text"
+              name="idUsuario"
+              value={idUsuario}
+              readOnly
+            />
+          </FormGroup>
+          <FormGroup>
+            <label htmlFor="imagen">imagen del usuario:</label>
+            <Input
+              type="text"
+              name="imagen"
+              value={imagen}
+              onChange={(e) => setImagen(e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <label htmlFor="Nombre">Nombre:</label>
+            <Input
+              type="text"
+              name="Nombre"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <label htmlFor="email">Email:</label>
+            <Input
+              type="text"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <label htmlFor="Contrasenia">Contraseña:</label>
+            <Input
+              type="text"
+              name="Contrasenia"
+              value={contrasenia}
+              onChange={(e) => setContrasenia(e.target.value)}
+            />
+          </FormGroup>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={handleCrearProducto}>
+            Agregar Usuario
+          </Button>
+          <Button color="secondary" onClick={toggleModal}>
+            Cancelar
+          </Button>
+        </ModalFooter>
+      </Modal>
     </Container>
 
   )
