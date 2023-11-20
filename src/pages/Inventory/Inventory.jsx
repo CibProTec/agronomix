@@ -1,11 +1,24 @@
-import React from 'react'
-// import InventoryJson from '../../services/FakeApi/fakeApiProductos.json'
+import React, { useEffect, useState } from 'react'
 import { Container, Table, Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
 import deleteIcon from "../../assets/icons/delete-icon.png"
 import editIcon from "../../assets/icons/edit-icon.png"
 
+import { obtenerInventario } from "../../apiService/apiService";
+
 export const Inventory = () => {
-    // const Inventario = InventoryJson.Inventario;
+
+    const [inventario, setInventario] = useState([]);
+
+    useEffect(() => {
+        obtenerInventario()
+          .then((response) => {
+            setInventario(response.data);
+          })
+          .catch((error) => {
+            console.error("Error fetching categories:", error);
+          });
+      }, []);
+    
 
   return (
     <Container>
@@ -78,42 +91,42 @@ export const Inventory = () => {
                 </tr>
             </thead>
             <tbody>
-                {/* {Inventario.map((producto) => 
-                <tr>
+                {inventario.map((inventario) => 
+                <tr id={inventario.idInventario}>
                     <th scope="row" className='ps-4'>
-                        {producto.id}
+                        {inventario.idInventario}
                     </th>
                     <td>
-                        {producto.imagen}
+                        {inventario.imagen}
                     </td>
                     <td>
-                        {producto.nombre}
+                        {inventario.nombreProducto}
 
                     </td>
                     <td>
-                        {producto.categoria}
+                        {inventario.nombreCategoria}
                     </td>            
                     <td>
-                        {producto.cantidad}
+                        {inventario.cantidad}
                     </td>
                     <td>
-                        {producto.lote}
+                        {inventario.nombreLote}
                     </td>
                     <td>
-                        {producto.fReg}
+                        {inventario.fecha_registro}
                     </td>
                     <td>
-                        {producto.fExp}
+                        {inventario.fecha_expiracion}
                     </td>
                     <td>
-                        {producto.created}
+                        {inventario.nombreUsuario}
                     </td>
                     <td>
-                        <img src={editIcon} alt={producto.id} className='table-icon me-2 ms-1'/>
-                        <img src={deleteIcon} alt={producto.id} className='table-icon me-2 ms-1'/>
+                        <img src={editIcon} alt={inventario.id} className='table-icon me-2 ms-1'/>
+                        <img src={deleteIcon} alt={inventario.id} className='table-icon me-2 ms-1'/>
                     </td>
                 </tr>
-                )} */}
+                )} 
         </tbody>
         </Table>
     </Container>
