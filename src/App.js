@@ -16,13 +16,10 @@ function App() {
             <Layout>
                 <Routes>
                   <Route path="/" element={<Dashboard/>} />
-                  <Route path="/Products" element={<Dashboard/>} />
                   <Route path="/Inventario" element={<Inventory/>} />
-                  <Route path="/Categories" element={<Categories/>} />
-                  <Route path="/Users" element={<Dashboard/>} />
-                  <Route path="/Products" element={<Products/>} />
-                  <Route path="/Inventory" element={<Inventory/>} />
-                  <Route path="/Users" element={<Users/>} />
+                  <Route path="/categorias" element={<Categories/>} />
+                  <Route path="/Productos" element={<Products/>} />
+                  <Route path="/Usuarios" element={<Users/>} />
                   <Route path="*" element={<NotFound/>} />
                   <Route path='/categorias/borrar' component={<DeleteCategoryModal/>} />
                 </Routes>
