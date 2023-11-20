@@ -18,7 +18,7 @@ export const actualizarCategoria = (id, categoriaActualizada) => {
 };
 
 export const eliminarCategoria = (id, state) => {
-  return axios.put(`${API_BASE_URL}/categorias/borrar/${id}?state=${state}`);
+  return axios.put(`${API_BASE_URL}/categorias/${id}`, state);
 };
 
 /*--------------------------- Inventario -------------------------*/
