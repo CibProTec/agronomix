@@ -3,10 +3,11 @@ import Layout from "./reusable/Layout/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import NotFound from "./pages/NotFound/NotFound";
 import { Inventory } from "./pages/Inventory/Inventory";
-import { Categories } from "./pages/Categories/Categories";
-import DeleteCategoryModal from "./Modals/DeleteCategoryModal";
+import { Category } from "./pages/Category/Category";
 import { Users } from "./pages/Users/Users";
 import { Products } from "./pages/Products/Products";
+import { Lotes } from "./pages/Lotes/Lotes";
+import { UnidadMedida } from "./pages/UnidadMedida/UnidadMedida";
 
 function App() {
   return (
@@ -17,11 +18,12 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Dashboard/>} />
                   <Route path="/Inventario" element={<Inventory/>} />
-                  <Route path="/categorias" element={<Categories/>} />
+                  <Route path="/categorias" element={<Category/>} />
                   <Route path="/Productos" element={<Products/>} />
                   <Route path="/Usuarios" element={<Users/>} />
+                  <Route path="/Lotes" element={<Lotes/>} />
+                  <Route path="/UnidadMedida" element={<UnidadMedida/>} />
                   <Route path="*" element={<NotFound/>} />
-                  <Route path='/categorias/borrar' component={<DeleteCategoryModal/>} />
                 </Routes>
             </Layout>
         </div>
