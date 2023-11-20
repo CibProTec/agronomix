@@ -34,15 +34,15 @@ export const Sidebar = () => {
                 <div className="home-icon"></div>
                 Inicio
             </div>
-            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Products')}}>
+            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Productos')}}>
                 <div className="products-icon"></div>
                 Productos
             </div>
-            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Inventory')}}>
+            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Inventario')}}>
                 <div className="inventory-chart-icon"></div>
                 Reporte de Inventario
             </div>
-            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Users')}}>
+            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Usuarios')}}>
                 <div className="user-icon"></div>
                 Usuarios
             </div>

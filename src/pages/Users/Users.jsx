@@ -22,7 +22,7 @@ export const Users = () => {
 
   return (
     <Container>
-        <h4 className='mt-3 ms-1'>Inventario</h4>
+        <h4 className='mt-3 ms-1'>Usuarios</h4>
         <div className='d-flex justify-content-end'>
             <Button className='bg-verde-bosque px-5 float-right me-2 mb-5'>Crear Producto</Button>
         </div>
