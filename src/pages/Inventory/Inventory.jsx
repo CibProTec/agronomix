@@ -1,11 +1,11 @@
 import React from 'react'
-import InventoryJson from '../../services/FakeApi/fakeApiProductos.json'
+// import InventoryJson from '../../services/FakeApi/fakeApiProductos.json'
 import { Container, Table, Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
 import deleteIcon from "../../assets/icons/delete-icon.png"
 import editIcon from "../../assets/icons/edit-icon.png"
 
 export const Inventory = () => {
-    const Inventario = InventoryJson.Inventario;
+    // const Inventario = InventoryJson.Inventario;
 
   return (
     <Container>
@@ -78,7 +78,7 @@ export const Inventory = () => {
                 </tr>
             </thead>
             <tbody>
-                {Inventario.map((producto) => 
+                {/* {Inventario.map((producto) => 
                 <tr>
                     <th scope="row" className='ps-4'>
                         {producto.id}
@@ -113,7 +113,7 @@ export const Inventory = () => {
                         <img src={deleteIcon} alt={producto.id} className='table-icon me-2 ms-1'/>
                     </td>
                 </tr>
-                )}
+                )} */}
         </tbody>
         </Table>
     </Container>

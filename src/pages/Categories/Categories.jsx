@@ -20,7 +20,7 @@ import {
   actualizarCategoria,
   eliminarCategoria,
 } from "../../apiService/apiService"; // Ajusta la ruta según la ubicación real de tu apiService
-import DeleteCategoryModal from "../../Modals/DeleteCategoryModal";
+import DeleteCategoryModal from "../../Modals/DeleteModal";
 import { Form } from "react-router-dom";
 
 export const Categories = () => {
@@ -59,7 +59,9 @@ export const Categories = () => {
     setModalEditar(!modalEditar);
   };
 
-  const toggleModalEliminar = () => {
+  const toggleModalEliminar = (categoria) => {
+    setCategoriaSeleccionada(categoria);
+    setNombreCategoria(categoria.nombre);
     setModalEliminar(!modalEliminar);
   };
 
@@ -119,7 +121,7 @@ export const Categories = () => {
 
   const handleEliminarCategoria = (idCategoria) => {
     // Lógica para eliminar la categoría
-    eliminarCategoria(idCategoria)
+    eliminarCategoria(idCategoria, "I")
       .then((response) => {
         console.log(response.data);
         // Actualizar la lista de categorías después de eliminar una categoría
@@ -180,7 +182,7 @@ export const Categories = () => {
                   alt={categoria.idCategoriaProducto}
                   className="table-icon me-2 ms-1"
                   onClick={() =>
-                    handleEliminarCategoria(categoria.idCategoriaProducto)
+                    toggleModalEliminar(categoria)
                   }
                 />
               </td>
