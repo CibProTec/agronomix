@@ -8,6 +8,7 @@ import { Users } from "./pages/Users/Users";
 import { Products } from "./pages/Products/Products";
 import { Lotes } from "./pages/Lotes/Lotes";
 import { UnidadMedida } from "./pages/UnidadMedida/UnidadMedida";
+import { Categories } from "./pages/Categories/Categories";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                   <Route path="/" element={<Dashboard/>} />
                   <Route path="/Inventario" element={<Inventory/>} />
                   <Route path="/categorias" element={<Category/>} />
+                  <Route path="/category" element={<Categories/>} />
                   <Route path="/Productos" element={<Products/>} />
                   <Route path="/Usuarios" element={<Users/>} />
                   <Route path="/Lotes" element={<Lotes/>} />

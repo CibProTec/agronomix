@@ -60,10 +60,10 @@ export const Sidebar = () => {
                     <div className="weight-icon"></div>
                     Unidad de medida
                 </div>
-                <div className="sidebar-item cursor-pointer">
+                {/* <div className="sidebar-item cursor-pointer">
                     <div className="coins-icon"></div>
                     Monedas
-                </div>
+                </div> */}
                 <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Categorias')}}>
                     <div className="categ-icon"></div>
                     Categorías

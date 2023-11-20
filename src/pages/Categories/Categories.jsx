@@ -18,9 +18,8 @@ import {
   obtenerCategorias,
   crearCategoria,
   actualizarCategoria,
-  eliminarCategoria,
 } from "../../apiService/apiService"; // Ajusta la ruta según la ubicación real de tu apiService
-import DeleteCategoryModal from "../../Modals/DeleteCategoryModal";
+import DeleteCategoryModal from "../../Modals/DeleteModal";
 import { Form } from "react-router-dom";
 
 export const Categories = () => {
@@ -42,6 +41,17 @@ export const Categories = () => {
       });
   }, []);
 
+  const actualizarLista =()=>{
+    obtenerCategorias()
+    .then((response) => {
+      setCategorias(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching categories:", error);
+    });
+  }
+
+
   const toggleModal = () => {
     setModal(!modal);
     // Calcular automáticamente el próximo ID cuando se abre el modal para agregar categoría
@@ -50,16 +60,19 @@ export const Categories = () => {
         ? categorias[categorias.length - 1].idCategoriaProducto + 1
         : 1;
     setIdCategoria(proximoId);
-    setNombreCategoria("");
   };
 
-  const toggleModalEditar = (categoria) => {
+  const toggleModalEditar = (categoria, nombre) => {
     setCategoriaSeleccionada(categoria);
-    setNombreCategoria(categoria.nombre);
+    setNombreCategoria(nombre);
     setModalEditar(!modalEditar);
   };
 
-  const toggleModalEliminar = () => {
+  const toggleModalEliminar = (categoria, nombre) => {
+    setCategoriaSeleccionada(categoria);
+    setNombreCategoria(nombre);
+    console.log(categoria);
+    console.log(nombre);
     setModalEliminar(!modalEliminar);
   };
 
@@ -74,13 +87,7 @@ export const Categories = () => {
       .then((response) => {
         console.log(response.data);
         // Actualizar la lista de categorías después de agregar una nueva categoría
-        obtenerCategorias()
-          .then((response) => {
-            setCategorias(response.data);
-          })
-          .catch((error) => {
-            console.error("Error fetching categories:", error);
-          });
+        actualizarLista();
       })
       .catch((error) => {
         console.error("Error creating category:", error);
@@ -91,22 +98,17 @@ export const Categories = () => {
   };
 
   const handleEditarCategoria = () => {
+
     // Lógica para actualizar la categoría seleccionada
     if (categoriaSeleccionada) {
-      const categoriaActualizada = { nombre: nombreCategoria };
-      const idCategoria = categoriaSeleccionada.idCategoriaProducto;
+      const categoriaActualizada = { nombre: nombreCategoria};
+      const idCategoria = categoriaSeleccionada;
 
       actualizarCategoria(idCategoria, categoriaActualizada)
         .then((response) => {
           console.log(response.data);
           // Actualizar la lista de categorías después de actualizar la categoría
-          obtenerCategorias()
-            .then((response) => {
-              setCategorias(response.data);
-            })
-            .catch((error) => {
-              console.error("Error fetching categories:", error);
-            });
+          actualizarLista();
         })
         .catch((error) => {
           console.error("Error updating category:", error);
@@ -117,27 +119,6 @@ export const Categories = () => {
     }
   };
 
-  const handleEliminarCategoria = (idCategoria) => {
-    // Lógica para eliminar la categoría
-    eliminarCategoria(idCategoria)
-      .then((response) => {
-        console.log(response.data);
-        // Actualizar la lista de categorías después de eliminar una categoría
-        obtenerCategorias()
-          .then((response) => {
-            setCategorias(response.data);
-          })
-          .catch((error) => {
-            console.error("Error fetching categories:", error);
-          });
-      })
-      .catch((error) => {
-        console.error("Error deleting category:", error);
-      });
-
-    // Cierra el modal después de eliminar la categoría
-    toggleModalEliminar();
-  };
 
   return (
     <Container>
@@ -157,10 +138,13 @@ export const Categories = () => {
           <tr>
             <th className="ps-4">ID</th>
             <th>Nombre</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {categorias.map((categoria) => (
+          {categorias.map((categoria) => 
+            {if(categoria.state === 'A')
+            return(
             <tr key={categoria.idCategoriaProducto}>
               <th scope="row" className="ps-4">
                 {categoria.idCategoriaProducto}
@@ -173,19 +157,19 @@ export const Categories = () => {
                   src={editIcon}
                   alt={categoria.idCategoriaProducto}
                   className="table-icon me-2 ms-1"
-                  onClick={() => toggleModalEditar(categoria)}
+                  onClick={() => toggleModalEditar(categoria.idCategoriaProducto, categoria.nombre)}
                 />
                 <img
                   src={deleteIcon}
                   alt={categoria.idCategoriaProducto}
                   className="table-icon me-2 ms-1"
                   onClick={() =>
-                    handleEliminarCategoria(categoria.idCategoriaProducto)
+                    toggleModalEliminar(categoria.idCategoriaProducto, categoria.nombre)
                   }
                 />
               </td>
             </tr>
-          ))}
+          )})}
         </tbody>
       </Table>
 
@@ -252,9 +236,11 @@ export const Categories = () => {
       {/* Modal para eliminar categoría */}
       <DeleteCategoryModal
         isOpen={modalEliminar}
-        toggleModal={toggleModalEliminar}
-        handleEliminarCategoria={handleEliminarCategoria}
-        categoria={categoriaSeleccionada}
+        toggleModalDel={toggleModalEliminar}
+        id={categoriaSeleccionada}
+        table={"categorias"}
+        objeto={nombreCategoria}
+        actualizarLista={actualizarLista()}
       />
     </Container>
   );
