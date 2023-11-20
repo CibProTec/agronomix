@@ -190,7 +190,9 @@ export const Products = () => {
               <th scope="row" className="ps-4">
                 {Producto.idProducto}
               </th>
-              <td>{Producto.imagen}</td>
+              <td>
+                <img style={{ width: "40px", borderRadius: "50%" }} src={Producto.imagen} alt={Producto.imagen} />
+              </td>
               <td>{Producto.nombre}</td>
               <td>{Producto.nombreLote}</td>
               <td>{Producto.nombreCategoria}</td>

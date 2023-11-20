@@ -153,7 +153,9 @@ export const Users = () => {
               <th scope="row" className="ps-4">
                 {usuario.idUsuario}
               </th>
-              <td>{usuario.imagen}</td>
+              <td>
+                <img style={{ width: "60px", borderRadius: "50%" }} src={usuario.imagen} alt={usuario.imagen} />
+              </td>
               <td>{usuario.nombre}</td>
               <td>{usuario.email}</td>
               <td>{usuario.contrasenia}</td>
