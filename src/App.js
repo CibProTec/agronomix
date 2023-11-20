@@ -3,7 +3,6 @@ import Layout from "./reusable/Layout/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import NotFound from "./pages/NotFound/NotFound";
 import { Inventory } from "./pages/Inventory/Inventory";
-import { Category } from "./pages/Category/Category";
 import { Users } from "./pages/Users/Users";
 import { Products } from "./pages/Products/Products";
 import { Lotes } from "./pages/Lotes/Lotes";
