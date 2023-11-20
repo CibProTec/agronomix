@@ -1,30 +1,83 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Table, Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
+import { Container,
+    Table,
+    Button,
+    Form,
+    FormGroup,
+    Input,
+    Modal,
+    Col,
+    Row,
+    ModalHeader,
+    ModalBody,
+    ModalFooter } from 'reactstrap';
 import deleteIcon from "../../assets/icons/delete-icon.png"
 import editIcon from "../../assets/icons/edit-icon.png"
 
-import { obtenerLotes } from "../../apiService/apiService";
+import { obtenerLotes, crearLotes } from "../../apiService/apiService";
 
 export const Lotes = () => {
 
     const [lote, setLote] = useState([]);
-
+    const [nombre, setNombre] = useState("");
+    const [idLoteProducto, setIdLoteProducto] = useState(0);
+    const [modal, setModal] = useState(false);
+  
     useEffect(() => {
-        obtenerLotes()
-          .then((response) => {
-            setLote(response.data);
-          })
-          .catch((error) => {
-            console.error("Error fetching categories:", error);
-          });
-      }, []);
-    
+      obtenerLotes()
+        .then((response) => {
+          setLote(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching categories:", error);
+        });
+    }, []);
+  
+    const toggleModal = () => {
+      // Calcular automáticamente el próximo ID solo si no hay lotes existentes
+      const proximoId =
+        lote.length > 0
+          ? lote[lote.length - 1].idLoteProducto + 1
+          : 1;
+  
+      setModal(!modal);
+      setIdLoteProducto(proximoId);
+      setNombre("");
+    };
+  
+    const handleCrearLote = () => {
+      const nuevoLote = {
+        idLoteProducto: idLoteProducto,
+        nombreLote: nombre,
+      };
+  
+      // Lógica para agregar un nuevo lote
+      crearLotes(nuevoLote)
+        .then((response) => {
+          console.log(response.data);
+          // Actualizar la lista de lotes después de agregar uno nuevo
+          obtenerLotes()
+            .then((response) => {
+              setLote(response.data);
+            })
+            .catch((error) => {
+              console.error("Error fetching lots:", error);
+            });
+        })
+        .catch((error) => {
+          console.error("Error creating lot:", error);
+        });
+  
+      // Cierra el modal después de agregar el lote
+      toggleModal();
+    };
+  
 
   return (
     <Container>
         <h4 className='mt-3 ms-1'>lotes</h4>
         <div className='d-flex justify-content-end'>
-            <Button className='bg-verde-bosque px-5 float-right me-2 mb-5'>Crear Lote</Button>
+            <Button className='bg-verde-bosque px-5 float-right me-2 mb-5' onClick={toggleModal}>Crear Lote</Button>
         </div>
         <Form>
             <Row>
@@ -71,6 +124,40 @@ export const Lotes = () => {
                 )}
         </tbody>
         </Table>
+
+           {/* Modal para agregar Producto */}
+      <Modal isOpen={modal} toggle={toggleModal}>
+        <ModalHeader toggle={toggleModal}>Agregar Lote</ModalHeader>
+        <ModalBody>
+          {/* Formulario para agregar Producto */}
+          <FormGroup>
+            <label htmlFor="idLote">ID:</label>
+            <Input
+              type="text"
+              name="idLote"
+              value={idLoteProducto}
+              readOnly
+            />
+          </FormGroup>
+          <FormGroup>
+            <label htmlFor="Nombre">Nombre:</label>
+            <Input
+              type="text"
+              name="Nombre"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+            />
+          </FormGroup>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={handleCrearLote}>
+            Agregar Lote
+          </Button>
+          <Button color="secondary" onClick={toggleModal}>
+            Cancelar
+          </Button>
+        </ModalFooter>
+      </Modal>
     </Container>
 
   )
