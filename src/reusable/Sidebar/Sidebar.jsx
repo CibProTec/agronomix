@@ -18,7 +18,6 @@ export const Sidebar = () => {
     const handleNavigate = (path) => {
         navigate('/'+path)
     }
-    
 
     return(
         <div id="Sidebar" className="bg-verde-oscuro">
@@ -34,19 +33,19 @@ export const Sidebar = () => {
                 <div className="home-icon"></div>
                 Inicio
             </div>
-            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Products')}}>
+            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Productos')}}>
                 <div className="products-icon"></div>
                 Productos
             </div>
-            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Inventory')}}>
+            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Inventario')}}>
                 <div className="inventory-chart-icon"></div>
                 Reporte de Inventario
             </div>
-            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Users')}}>
+            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Usuarios')}}>
                 <div className="user-icon"></div>
                 Usuarios
             </div>
-            <div className="sidebar-item cursor-pointer" >
+            <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Lotes')}}>
                 <div className="lots-icon"></div>
                 Lotes
             </div>
@@ -57,7 +56,7 @@ export const Sidebar = () => {
                     Configuración
                 </AccordionHeader>
                 <AccordionBody accordionId="1" id="accordion-body-sidebar" className="bg-gris">
-                <div className="sidebar-item cursor-pointer">
+                <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('UnidadMedida')}}>
                     <div className="weight-icon"></div>
                     Unidad de medida
                 </div>
@@ -65,7 +64,7 @@ export const Sidebar = () => {
                     <div className="coins-icon"></div>
                     Monedas
                 </div> */}
-                <div className="sidebar-item cursor-pointer">
+                <div className="sidebar-item cursor-pointer" onClick={() => {handleNavigate('Categorias')}}>
                     <div className="categ-icon"></div>
                     Categorías
                 </div>

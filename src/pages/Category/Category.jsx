@@ -3,16 +3,16 @@ import { Container, Table, Button, Form, FormGroup, Input, Row, Col } from 'reac
 import deleteIcon from "../../assets/icons/delete-icon.png"
 import editIcon from "../../assets/icons/edit-icon.png"
 
-import { obtenerUsuarios } from "../../apiService/apiService";
+import { obtenerCategorias } from "../../apiService/apiService";
 
-export const Users = () => {
+export const Category = () => {
 
-    const [usuario, setUsuario] = useState([]);
+    const [categoria, setCategoria] = useState([]);
 
     useEffect(() => {
-      obtenerUsuarios()
+        obtenerCategorias()
           .then((response) => {
-            setUsuario(response.data);
+            setCategoria(response.data);
           })
           .catch((error) => {
             console.error("Error fetching categories:", error);
@@ -22,20 +22,15 @@ export const Users = () => {
 
   return (
     <Container>
-        <h4 className='mt-3 ms-1'>Usuarios</h4>
+        <h4 className='mt-3 ms-1'>Categorias</h4>
         <div className='d-flex justify-content-end'>
-            <Button className='bg-verde-bosque px-5 float-right me-2 mb-5'>Crear Producto</Button>
+            <Button className='bg-verde-bosque px-5 float-right me-2 mb-5'>Crear Categoria</Button>
         </div>
         <Form>
             <Row>
                 <Col className='mx-2'>
                     <FormGroup>
                         <Input type='text' name='nombre' placeholder='Buscar por nombre'></Input>
-                    </FormGroup>
-                </Col>
-                <Col className='me-2'>
-                    <FormGroup>
-                        <Input type='text' name='nombre' placeholder='Buscar por email'></Input>
                     </FormGroup>
                 </Col>
                 <Col className='me-2'>
@@ -52,45 +47,26 @@ export const Users = () => {
                         ID
                     </th>
                     <th>
-                        imagen
-                    </th>
-                    <th>
                         Nombre
                     </th>
-                    <th>
-                        email
-                    </th>
-                    <th>
-                        contraseña
-                    </th>
-                    
                     <th>
                         
                     </th>
                 </tr>
             </thead>
             <tbody>
-                {usuario.map((usuario) => 
+                {categoria.map((Categoria) => 
                 <tr>
                     <th scope="row" className='ps-4'>
-                        {usuario.idUsuario}
+                        {Categoria.idCategoriaProducto}
                     </th>
                     <td>
-                        {usuario.imagen}
-                    </td>
-                    <td>
-                        {usuario.nombre}
+                        {Categoria.nombre}
 
                     </td>
                     <td>
-                        {usuario.email}
-                    </td>            
-                    <td>
-                        {usuario.contrasenia}
-                    </td>
-                    <td>
-                        <img src={editIcon} alt={usuario.idUsuario} className='table-icon me-2 ms-1'/>
-                        <img src={deleteIcon} alt={usuario.idUsuario} className='table-icon me-2 ms-1'/>
+                        <img src={editIcon} alt={Categoria.idCategoriaProducto} className='table-icon me-2 ms-1'/>
+                        <img src={deleteIcon} alt={Categoria.idCategoriaProducto} className='table-icon me-2 ms-1'/>
                     </td>
                 </tr>
                 )}

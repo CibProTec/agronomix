@@ -92,7 +92,9 @@ export const Inventory = () => {
             </thead>
             <tbody>
                 {inventario.map((inventario) => 
-                <tr id={inventario.idInventario}>
+                {if(inventario.state === 'A')
+                    return(
+                    <tr id={inventario.idInventario}>
                     <th scope="row" className='ps-4'>
                         {inventario.idInventario}
                     </th>
@@ -122,11 +124,11 @@ export const Inventory = () => {
                         {inventario.nombreUsuario}
                     </td>
                     <td>
-                        <img src={editIcon} alt={inventario.id} className='table-icon me-2 ms-1'/>
-                        <img src={deleteIcon} alt={inventario.id} className='table-icon me-2 ms-1'/>
+                        <img src={editIcon} alt={inventario.idInventario} className='table-icon me-2 ms-1'/>
+                        <img src={deleteIcon} alt={inventario.idInventario} className='table-icon me-2 ms-1'/>
                     </td>
                 </tr>
-                )} 
+                )})} 
         </tbody>
         </Table>
     </Container>

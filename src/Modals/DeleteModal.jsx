@@ -8,10 +8,8 @@ import { eliminarCategoria,
          eliminarUnidadMedida,
           } from '../apiService/apiService';
 
-const DeleteCategoryModal = ({ isOpen, toggleModalDel, id, objeto, table}) => {
-  console.log(id)
-  console.log(objeto)
-  console.log(table)
+const DeleteCategoryModal = ({ isOpen, toggleModalDel, id, objeto, table, actualizarLista}) => {
+
   
   // Lógica para eliminar la categoría
   const handleEliminar = (id) => {
@@ -52,7 +50,7 @@ const DeleteCategoryModal = ({ isOpen, toggleModalDel, id, objeto, table}) => {
       .catch((error) => {
         console.error("Error deleting category:", error);
       });
-
+      actualizarLista();
       toggleModalDel();
       break
     case "lotes":

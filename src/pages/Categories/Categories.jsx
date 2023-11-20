@@ -41,6 +41,17 @@ export const Categories = () => {
       });
   }, []);
 
+  const actualizarLista =()=>{
+    obtenerCategorias()
+    .then((response) => {
+      setCategorias(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching categories:", error);
+    });
+  }
+
+
   const toggleModal = () => {
     setModal(!modal);
     // Calcular automáticamente el próximo ID cuando se abre el modal para agregar categoría
@@ -51,9 +62,9 @@ export const Categories = () => {
     setIdCategoria(proximoId);
   };
 
-  const toggleModalEditar = (categoria) => {
+  const toggleModalEditar = (categoria, nombre) => {
     setCategoriaSeleccionada(categoria);
-    setNombreCategoria(categoria.nombre);
+    setNombreCategoria(nombre);
     setModalEditar(!modalEditar);
   };
 
@@ -76,13 +87,7 @@ export const Categories = () => {
       .then((response) => {
         console.log(response.data);
         // Actualizar la lista de categorías después de agregar una nueva categoría
-        obtenerCategorias()
-          .then((response) => {
-            setCategorias(response.data);
-          })
-          .catch((error) => {
-            console.error("Error fetching categories:", error);
-          });
+        actualizarLista();
       })
       .catch((error) => {
         console.error("Error creating category:", error);
@@ -96,20 +101,14 @@ export const Categories = () => {
 
     // Lógica para actualizar la categoría seleccionada
     if (categoriaSeleccionada) {
-      const categoriaActualizada = { nombre: nombreCategoria };
-      const idCategoria = categoriaSeleccionada.idCategoriaProducto;
+      const categoriaActualizada = { nombre: nombreCategoria};
+      const idCategoria = categoriaSeleccionada;
 
       actualizarCategoria(idCategoria, categoriaActualizada)
         .then((response) => {
           console.log(response.data);
           // Actualizar la lista de categorías después de actualizar la categoría
-          obtenerCategorias()
-            .then((response) => {
-              setCategorias(response.data);
-            })
-            .catch((error) => {
-              console.error("Error fetching categories:", error);
-            });
+          actualizarLista();
         })
         .catch((error) => {
           console.error("Error updating category:", error);
@@ -139,10 +138,13 @@ export const Categories = () => {
           <tr>
             <th className="ps-4">ID</th>
             <th>Nombre</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {categorias.map((categoria) => (
+          {categorias.map((categoria) => 
+            {if(categoria.state === 'A')
+            return(
             <tr key={categoria.idCategoriaProducto}>
               <th scope="row" className="ps-4">
                 {categoria.idCategoriaProducto}
@@ -150,13 +152,12 @@ export const Categories = () => {
               <th scope="row" className="ps-4">
                 {categoria.nombre}
               </th>
-              {console.log(categoria)}
               <td>
                 <img
                   src={editIcon}
                   alt={categoria.idCategoriaProducto}
                   className="table-icon me-2 ms-1"
-                  onClick={() => toggleModalEditar(categoria)}
+                  onClick={() => toggleModalEditar(categoria.idCategoriaProducto, categoria.nombre)}
                 />
                 <img
                   src={deleteIcon}
@@ -168,7 +169,7 @@ export const Categories = () => {
                 />
               </td>
             </tr>
-          ))}
+          )})}
         </tbody>
       </Table>
 
@@ -239,6 +240,7 @@ export const Categories = () => {
         id={categoriaSeleccionada}
         table={"categorias"}
         objeto={nombreCategoria}
+        actualizarLista={actualizarLista()}
       />
     </Container>
   );

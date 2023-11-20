@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Table, Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
+import deleteIcon from "../../assets/icons/delete-icon.png"
+import editIcon from "../../assets/icons/edit-icon.png"
+
+import { obtenerProductos } from "../../apiService/apiService";
 
 export const Products = () => {
+
+    const [producto, setProducto] = useState([]);
+
+    useEffect(() => {
+      obtenerProductos()
+          .then((response) => {
+            setProducto(response.data);
+          })
+          .catch((error) => {
+            console.error("Error fetching categories:", error);
+          });
+      }, []);
+    
+
   return (
-        <Container>
+    <Container>
         <h4 className='mt-3 ms-1'>Productos</h4>
         <div className='d-flex justify-content-end'>
             <Button className='bg-verde-bosque px-5 float-right me-2 mb-5'>Crear Producto</Button>
@@ -12,22 +30,17 @@ export const Products = () => {
             <Row>
                 <Col className='mx-2'>
                     <FormGroup>
-                        <Input type='text' name='nombre' placeholder='Buscar por nombre'></Input>
+                        <Input type='text' name='nombre' placeholder='Buscar por Nombre'></Input>
                     </FormGroup>
                 </Col>
                 <Col className='me-2'>
                     <FormGroup>
-                        <Input type='text' name='nombre' placeholder='Buscar por categoría'></Input>
+                        <Input type='text' name='nombre' placeholder='Buscar por Lote'></Input>
                     </FormGroup>
                 </Col>
                 <Col className='me-2'>
                     <FormGroup>
-                        <Input type='text' name='nombre' placeholder='Buscar por usuario'></Input>
-                    </FormGroup>
-                </Col>
-                <Col className='me-2'>
-                    <FormGroup>
-                        <Input type='text' name='nombre' placeholder='Buscar por lote'></Input>
+                        <Input type='text' name='nombre' placeholder='Buscar por Categoria'></Input>
                     </FormGroup>
                 </Col>
                 <Col className='me-2'>
@@ -50,67 +63,45 @@ export const Products = () => {
                         Nombre
                     </th>
                     <th>
-                        Categoria
-                    </th>
-                    <th>
-                        Cantidad
-                    </th>
-                    <th>
                         Lote
                     </th>
                     <th>
-                        F. Registro
+                        Categoria
                     </th>
-                    <th>
-                        F. Expiración
-                    </th>
-                    <th>
-                        Responsable
-                    </th>
+                    
                     <th>
                         
                     </th>
                 </tr>
             </thead>
             <tbody>
-                {/* {Inventario.map((producto) => 
+                {producto.map((Producto) => 
                 <tr>
                     <th scope="row" className='ps-4'>
-                        {producto.id}
+                        {Producto.idProducto}
                     </th>
                     <td>
-                        {producto.imagen}
+                        {Producto.imagen}
                     </td>
                     <td>
-                        {producto.nombre}
+                        {Producto.nombre}
 
                     </td>
                     <td>
-                        {producto.categoria}
+                        {Producto.nombreLote}
                     </td>            
                     <td>
-                        {producto.cantidad}
+                        {Producto.nombreCategoria}
                     </td>
                     <td>
-                        {producto.lote}
-                    </td>
-                    <td>
-                        {producto.fReg}
-                    </td>
-                    <td>
-                        {producto.fExp}
-                    </td>
-                    <td>
-                        {producto.created}
-                    </td>
-                    <td>
-                        <img src={editIcon} alt={producto.id} className='table-icon me-2 ms-1'/>
-                        <img src={deleteIcon} alt={producto.id} className='table-icon me-2 ms-1'/>
+                        <img src={editIcon} alt={Producto.idProducto} className='table-icon me-2 ms-1'/>
+                        <img src={deleteIcon} alt={Producto.idProducto} className='table-icon me-2 ms-1'/>
                     </td>
                 </tr>
-                )} */}
+                )}
         </tbody>
         </Table>
     </Container>
+
   )
 }

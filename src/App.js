@@ -3,10 +3,12 @@ import Layout from "./reusable/Layout/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import NotFound from "./pages/NotFound/NotFound";
 import { Inventory } from "./pages/Inventory/Inventory";
-import { Categories } from "./pages/Categories/Categories";
-import DeleteCategoryModal from "./Modals/DeleteModal";
+import { Category } from "./pages/Category/Category";
 import { Users } from "./pages/Users/Users";
 import { Products } from "./pages/Products/Products";
+import { Lotes } from "./pages/Lotes/Lotes";
+import { UnidadMedida } from "./pages/UnidadMedida/UnidadMedida";
+import { Categories } from "./pages/Categories/Categories";
 
 function App() {
   return (
@@ -17,10 +19,12 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Dashboard/>} />
                   <Route path="/Inventario" element={<Inventory/>} />
-                  <Route path="/Categories" element={<Categories/>} />
-                  <Route path="/Products" element={<Products/>} />
-                  <Route path="/Inventory" element={<Inventory/>} />
-                  <Route path="/Users" element={<Users/>} />
+                  <Route path="/categorias" element={<Category/>} />
+                  <Route path="/category" element={<Categories/>} />
+                  <Route path="/Productos" element={<Products/>} />
+                  <Route path="/Usuarios" element={<Users/>} />
+                  <Route path="/Lotes" element={<Lotes/>} />
+                  <Route path="/UnidadMedida" element={<UnidadMedida/>} />
                   <Route path="*" element={<NotFound/>} />
                 </Routes>
             </Layout>
