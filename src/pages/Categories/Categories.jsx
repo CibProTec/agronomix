@@ -124,7 +124,6 @@ export const Categories = () => {
     <Container>
       <h4 className="mt-3 ms-1">Categorías</h4>
       <div className="d-flex justify-content-end">
-        {/* Botón para abrir el modal de creación de categoría */}
         <Button
           onClick={toggleModal}
           className="bg-verde-bosque px-5 float-right me-2 mb-5"
@@ -132,6 +131,26 @@ export const Categories = () => {
           Crear Categoría
         </Button>
       </div>
+
+    <Row className="d-flex justify-content-between">
+      <Col lg="5">
+            <FormGroup>
+              <Input
+                type="text"
+                name="filtroNombre"
+                placeholder="Buscar por nombre"
+              />
+            </FormGroup>
+          </Col>
+          <Col lg="5">
+            <Button
+              type="button"
+              className="bg-verde-bosque w-100 border-0"
+            >
+              Filtrar
+            </Button>
+          </Col>
+    </Row>
 
       <Table className="table-striped table-responsive">
         <thead>
